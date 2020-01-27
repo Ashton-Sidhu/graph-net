@@ -8,5 +8,4 @@ echo 'deb https://debian.neo4j.com stable latest' | sudo tee /etc/apt/sources.li
 sudo apt-get update
 sudo apt-get install neo4j -y
 
-echo "Please run:"
-echo "echo neo4j-admin set-initial-password `your_password`" 
+sudo neo4j-admin set-initial-password $1

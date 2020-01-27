@@ -3,7 +3,7 @@ networks:
   spark-network:
 services:
   spark-master:
-    image: graphnet/spark:latest
+    build: .
     container_name: spark-master
     hostname: spark-master
     command: >
@@ -16,13 +16,15 @@ services:
     networks:
       - spark-network
   spark-worker:
-    image: graphnet/spark:latest
+    build: .
     depends_on:
       - spark-master
     command: >
       /bin/sh -c '
       /spark/sbin/start-slave.sh $$SPARK_MASTER
       && tail -f /spark/logs/*'
+    env_file:
+      - spark-worker.env
     environment:
       - SPARK_MASTER=spark://spark-master:7077
       - SPARK_WORKER_WEBUI_PORT=8080
