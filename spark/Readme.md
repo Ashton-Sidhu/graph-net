@@ -7,7 +7,7 @@ This is using Spark 2.4.4.
 
 Start a spark cluster with 3 worker nodes.
 
-`./start_spark.sh 3`
+`docker-compose up -d --scale spark-worker=2`
 
 Install Java 8
 
